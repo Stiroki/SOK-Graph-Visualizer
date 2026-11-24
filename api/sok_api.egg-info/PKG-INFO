@@ -1,5 +1,7 @@
 Metadata-Version: 2.4
 Name: sok-api
 Version: 0.1.0
+Summary: API abstractions and graph data model for Graph Visualizer plugins
 Requires-Python: >=3.9
 Dynamic: requires-python
+Dynamic: summary
