@@ -36,3 +36,17 @@ class PlatformService:
             if plugin.identifier() == identifier:
                 return plugin
         raise ValueError(f"Nije pronađen visualizer plugin sa id {identifier}")
+
+    def load_graph(self, source_id: str, params: dict) -> Graph:
+        plugin = self.find_data_source(source_id)
+        graph = plugin.load(params)
+        self.current_graph = graph
+        return graph
+
+    def render_graph(self, visualizer_id: str, graph: Graph | None = None) -> str:
+        plugin = self.find_visualizer(visualizer_id)
+        if graph is None:
+            graph = self.current_graph
+        if graph is None:
+            raise ValueError("Graf ne postoji.")
+        return plugin.render(graph)
